@@ -3,10 +3,7 @@ package com.devjava.userdep.userdep.controllers;
 import com.devjava.userdep.userdep.entities.User;
 import com.devjava.userdep.userdep.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +24,11 @@ public class UserController {
     public User findById(@PathVariable Long id) {
         User user = repository.findById(id).get();
         return user;
+    }
+
+    @PostMapping
+    public User insert(@RequestBody User user) {
+        User result = repository.save(user);
+        return result;
     }
 }
